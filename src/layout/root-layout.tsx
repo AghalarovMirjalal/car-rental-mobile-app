@@ -7,6 +7,8 @@ import { fontAssets } from "@/constants/fonts";
 import ThemeProvider from "@/context/theme-provider";
 import { useTheme } from "@/hooks/use-theme";
 
+import WebPhoneFrame from "./web-phone-frame";
+
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
 function RootNavigator() {
@@ -40,7 +42,9 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <RootNavigator />
+        <WebPhoneFrame>
+          <RootNavigator />
+        </WebPhoneFrame>
       </ThemeProvider>
     </SafeAreaProvider>
   );

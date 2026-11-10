@@ -1,8 +1,10 @@
 import { PropsWithChildren } from "react";
-import { Modal, Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useTheme } from "@/hooks/use-theme";
+
+import OverlayModal from "./overlay-modal";
 import { s } from "@/utils/scale";
 
 interface BottomSheetProps extends PropsWithChildren {
@@ -16,13 +18,13 @@ export default function BottomSheet({ visible, onClose, children }: BottomSheetP
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose} statusBarTranslucent>
+    <OverlayModal visible={visible} onRequestClose={onClose} animationType="slide">
       <Pressable style={[styles.backdrop, { backgroundColor: colors.overlay }]} onPress={onClose} />
       <View style={[styles.sheet, { backgroundColor: colors.card, paddingBottom: insets.bottom + s(16) }]}>
         <View style={[styles.handle, { backgroundColor: colors.border }]} />
         {children}
       </View>
-    </Modal>
+    </OverlayModal>
   );
 }
 

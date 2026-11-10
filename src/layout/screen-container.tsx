@@ -1,8 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import { PropsWithChildren } from "react";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { Edge, SafeAreaView } from "react-native-safe-area-context";
 
+import AppStatusBar from "@/components/ui/app-status-bar";
 import { useTheme } from "@/hooks/use-theme";
 
 interface ScreenContainerProps extends PropsWithChildren {
@@ -11,6 +11,8 @@ interface ScreenContainerProps extends PropsWithChildren {
   backgroundColor?: string;
   /** Status bar icon color: "light" = white icons. Derived from the theme when omitted. */
   statusBarStyle?: "light" | "dark";
+  /** Home-indicator color on web (defaults to the theme contrast). */
+  indicator?: "light" | "dark";
   edges?: Edge[];
   style?: StyleProp<ViewStyle>;
 }
@@ -23,6 +25,7 @@ export default function ScreenContainer({
   topColor,
   backgroundColor,
   statusBarStyle,
+  indicator,
   edges = ["top"],
   style,
 }: ScreenContainerProps) {
@@ -31,7 +34,7 @@ export default function ScreenContainer({
 
   return (
     <View style={[styles.root, { backgroundColor: bg }]}>
-      <StatusBar style={statusBarStyle ?? (isDark ? "light" : "dark")} />
+      <AppStatusBar style={statusBarStyle ?? (isDark ? "light" : "dark")} indicator={indicator ?? (isDark ? "light" : "dark")} />
       <SafeAreaView edges={edges} style={[styles.root, style, topColor ? { backgroundColor: topColor } : null]}>
         <View style={[styles.root, { backgroundColor: bg }]}>{children}</View>
       </SafeAreaView>
