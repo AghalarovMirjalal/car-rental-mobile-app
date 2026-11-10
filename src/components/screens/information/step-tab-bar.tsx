@@ -50,7 +50,8 @@ export default function StepTabBar({ state, navigateToTab, descriptors }: Bottom
 const styles = StyleSheet.create({
   wrap: {
     marginTop: s(25),
-    marginHorizontal: s(36),
+    marginLeft: s(31),
+    marginRight: s(25),
     height: s(DOT),
     justifyContent: "center",
   },

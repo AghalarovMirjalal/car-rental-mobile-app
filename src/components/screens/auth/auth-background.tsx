@@ -1,8 +1,8 @@
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import Svg, { Polygon } from "react-native-svg";
 
 import { useTheme } from "@/hooks/use-theme";
-import { s } from "@/utils/scale";
+import { s, SCREEN_WIDTH } from "@/utils/scale";
 
 interface AuthBackgroundProps {
   /** Safe-area top inset — the shape is measured from the top of the design frame. */
@@ -15,7 +15,7 @@ interface AuthBackgroundProps {
  */
 export default function AuthBackground({ topInset }: AuthBackgroundProps) {
   const { colors } = useTheme();
-  const { width } = useWindowDimensions();
+  const width = SCREEN_WIDTH;
   const offset = topInset - s(47);
   const side = s(410) + offset;
   const dip = s(410 + 214 * 0.9) + offset;

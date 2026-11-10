@@ -1,8 +1,8 @@
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import AppStatusBar from "@/components/ui/app-status-bar";
 import CarLogo from "@/components/ui/car-logo";
 import { fonts } from "@/constants/fonts";
 import { useTheme } from "@/hooks/use-theme";
@@ -25,14 +25,14 @@ export default function AuthScreen({ mode }: AuthScreenProps) {
 
   const handleSubmit = (email: string) => {
     signIn(email);
-    router.replace("/(main)/(tabs)");
+    router.replace("/(main)/(tabs)/(home)");
   };
 
   const switchMode = () => router.replace(isSignUp ? "/(auth)/sign-in" : "/(auth)/sign-up");
 
   return (
     <View style={[styles.root, { backgroundColor: colors.background }]}>
-      <StatusBar style="light" />
+      <AppStatusBar style="light" />
       <KeyboardAvoidingView style={styles.root} behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <ScrollView
           contentContainerStyle={[styles.content, { paddingTop: insets.top, paddingBottom: insets.bottom + s(24) }]}
@@ -42,7 +42,7 @@ export default function AuthScreen({ mode }: AuthScreenProps) {
         >
           <AuthBackground topInset={insets.top} />
           <View style={styles.logo}>
-            <CarLogo width={236} />
+            <CarLogo width={245} />
           </View>
 
           <AuthForm mode={mode} onSubmit={handleSubmit} />
@@ -62,12 +62,12 @@ export default function AuthScreen({ mode }: AuthScreenProps) {
 const styles = StyleSheet.create({
   root: { flex: 1 },
   content: { flexGrow: 1 },
-  logo: { alignItems: "center", marginTop: s(89), marginBottom: s(65) },
+  logo: { alignItems: "center", marginTop: s(66), marginBottom: s(51) },
   footer: {
-    marginTop: s(33),
+    marginTop: s(35),
     textAlign: "center",
-    fontFamily: fonts.medium,
-    fontSize: fs(12),
-    lineHeight: fs(18),
+    fontFamily: fonts.regular,
+    fontSize: fs(14),
+    lineHeight: fs(21),
   },
 });

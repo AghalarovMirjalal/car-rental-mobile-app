@@ -5,7 +5,7 @@ export const brands: Brand[] = [
   { slug: "mercedes", name: "Mercedes", logo: require("@assets/images/brands/mercedes.png") },
   { slug: "porsche", name: "Porsche", logo: require("@assets/images/brands/porsche.png") },
   { slug: "bmw", name: "BMW", logo: require("@assets/images/brands/bmw.png") },
-  { slug: "ferrari", name: "Ferrari", logo: require("@assets/images/brands/ferrari.png"), fillTile: true },
+  { slug: "ferrari", name: "Ferrari", logo: require("@assets/images/brands/ferrari.png") },
   { slug: "chevrolet", name: "Chevrolet", logo: require("@assets/images/brands/chevrolet.png") },
   { slug: "lexus", name: "Lexus", logo: require("@assets/images/brands/lexus.png") },
   { slug: "bentley", name: "Bentley", logo: require("@assets/images/brands/bentley.png") },

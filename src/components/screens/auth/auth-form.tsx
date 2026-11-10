@@ -38,7 +38,7 @@ export default function AuthForm({ mode, onSubmit }: AuthFormProps) {
 
   return (
     <View style={styles.card}>
-      <AppText size={20} weight="semiBold" color={colors.textSecondary} align="center" style={styles.title}>
+      <AppText size={24} weight="semiBold" color={colors.textSecondary} align="center" style={styles.title}>
         {isSignUp ? "Sign up to join" : "Sign in to continue"}
       </AppText>
 
@@ -50,7 +50,7 @@ export default function AuthForm({ mode, onSubmit }: AuthFormProps) {
         autoComplete="email"
         value={email}
         onChangeText={setEmail}
-        icon={<Ionicons name="mail-outline" size={s(20)} color={colors.placeholder} />}
+        icon={<Ionicons name="mail-outline" size={s(23)} color={colors.placeholder} />}
       />
       <TextField
         variant="pill"
@@ -60,7 +60,7 @@ export default function AuthForm({ mode, onSubmit }: AuthFormProps) {
         value={password}
         onChangeText={setPassword}
         containerStyle={styles.gap}
-        icon={<Ionicons name="lock-closed" size={s(19)} color={colors.placeholder} />}
+        icon={<Ionicons name="lock-closed" size={s(21)} color={colors.placeholder} />}
       />
 
       {error ? (
@@ -71,25 +71,26 @@ export default function AuthForm({ mode, onSubmit }: AuthFormProps) {
 
       <Button
         title={isSignUp ? "Sign up" : "Sign in"}
-        height={46}
-        fontSize={12}
-        fontWeight="medium"
+        height={45}
+        fontSize={14}
+        fontWeight="regular"
         onPress={handleSubmit}
         style={[styles.submit, error ? styles.submitWithError : null]}
       />
 
-      <AppText size={12} color={colors.textSecondary} align="center" style={styles.or}>
+      <AppText size={14} color={colors.textSecondary} align="center" style={styles.or}>
         or
       </AppText>
 
       <Button
         title={isSignUp ? "Sign up with facebook" : "Sign in with facebook"}
         variant="facebook"
-        height={45}
-        fontSize={12}
-        fontWeight="medium"
+        height={44}
+        fontSize={14}
+        fontWeight="regular"
+        align="left"
         onPress={() => onSubmit("facebook.user@rcarental.app")}
-        icon={<FontAwesome name="facebook" size={s(18)} color={colors.onPrimary} />}
+        icon={<FontAwesome name="facebook" size={s(21)} color={colors.onPrimary} />}
       />
     </View>
   );
@@ -102,18 +103,18 @@ const createStyles = (c: ThemeColors) =>
       borderRadius: s(10),
       backgroundColor: c.card,
       paddingHorizontal: s(23),
-      paddingTop: s(37),
-      paddingBottom: s(56),
+      paddingTop: s(34),
+      paddingBottom: s(58),
       shadowColor: c.shadow,
       shadowOpacity: 0.12,
       shadowRadius: s(8),
       shadowOffset: { width: 0, height: s(2) },
       elevation: 4,
     },
-    title: { marginBottom: s(44) },
-    gap: { marginTop: s(20) },
+    title: { marginBottom: s(42) },
+    gap: { marginTop: s(19) },
     error: { marginTop: s(8), marginLeft: s(12) },
     submit: { marginTop: s(19) },
     submitWithError: { marginTop: s(8) },
-    or: { marginTop: s(19), marginBottom: s(18) },
+    or: { marginTop: s(18), marginBottom: s(16) },
   });

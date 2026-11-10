@@ -34,7 +34,7 @@ export default function HistoryScreen() {
     <ScreenContainer>
       <ScreenHeader
         title="Recent History"
-        onBack={() => router.navigate("/(main)/(tabs)")}
+        onBack={() => router.navigate("/(main)/(tabs)/(home)")}
         right={
           <Pressable onPress={toggleSearch} hitSlop={10} accessibilityLabel="Search history">
             <Feather name={searchOpen ? "x" : "search"} size={s(22)} color={colors.text} />

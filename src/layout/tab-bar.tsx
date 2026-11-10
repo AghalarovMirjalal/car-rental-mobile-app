@@ -44,7 +44,7 @@ export default function TabBar({ state, descriptors, emitter, navigateToTab }: B
             accessibilityState={{ selected: focused }}
             accessibilityLabel={options.title ?? route.name}
           >
-            {ICONS[route.name]?.(color, s(24))}
+            {ICONS[route.name]?.(color, s(route.name === "(home)" ? 29 : 27))}
           </Pressable>
         );
       })}
@@ -57,12 +57,13 @@ const createStyles = (c: ThemeColors) =>
     bar: {
       flexDirection: "row",
       backgroundColor: c.tabBar,
-      paddingHorizontal: s(18),
+      paddingHorizontal: s(10),
       shadowColor: c.shadow,
       shadowOpacity: 0.06,
       shadowRadius: s(10),
       shadowOffset: { width: 0, height: -s(2) },
       elevation: 12,
     },
-    item: { flex: 1, height: s(63), alignItems: "center", justifyContent: "center" },
+    // Icons sit 36px below the top edge of the bar in the design.
+    item: { flex: 1, height: s(63), alignItems: "center", justifyContent: "center", paddingTop: s(9) },
   });

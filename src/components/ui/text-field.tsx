@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
 const variants = (c: ThemeColors) => ({
   pill: StyleSheet.create({
     container: {
-      height: s(44),
-      borderRadius: s(22),
+      height: s(45),
+      borderRadius: s(22.5),
       borderWidth: 1,
       borderColor: c.inputBorder,
       flexDirection: "row",
@@ -59,7 +59,7 @@ const variants = (c: ThemeColors) => ({
       paddingRight: s(16),
       backgroundColor: c.card,
     },
-    input: { fontFamily: fonts.regular, fontSize: fs(12) },
+    input: { fontFamily: fonts.regular, fontSize: fs(14) },
   }),
   box: StyleSheet.create({
     container: {
@@ -72,7 +72,7 @@ const variants = (c: ThemeColors) => ({
       paddingHorizontal: s(17),
       backgroundColor: c.background,
     },
-    input: { fontFamily: fonts.medium, fontSize: fs(18) },
+    input: { fontFamily: fonts.medium, fontSize: fs(20) },
   }),
   field: StyleSheet.create({
     container: {

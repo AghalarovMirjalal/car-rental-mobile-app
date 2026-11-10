@@ -26,11 +26,7 @@ function BrandTile({ brand, selected, onPress, size = 80 }: BrandTileProps) {
       style={[styles.tile, { width: s(size), height: s(size) }, selected && styles.selected]}
     >
       <View style={styles.clip}>
-        <Image
-          source={brand.logo}
-          contentFit={brand.fillTile ? "cover" : "contain"}
-          style={brand.fillTile ? styles.fill : styles.logo}
-        />
+        <Image source={brand.logo} contentFit="contain" style={styles.logo} />
       </View>
     </Pressable>
   );
@@ -63,5 +59,4 @@ const createStyles = (c: ThemeColors) =>
       justifyContent: "center",
     },
     logo: { width: s(44), height: s(44) },
-    fill: { width: "100%", height: "100%" },
   });

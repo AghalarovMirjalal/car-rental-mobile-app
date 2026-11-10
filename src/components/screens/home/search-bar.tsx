@@ -20,7 +20,7 @@ export default function SearchBar({ value, onChangeText, onSubmit, onFilterPress
 
   return (
     <View style={styles.bar}>
-      <Ionicons name="search-outline" size={s(21)} color={colors.searchPlaceholder} />
+      <Ionicons name="search-outline" size={s(24)} color={colors.searchPlaceholder} />
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -32,7 +32,7 @@ export default function SearchBar({ value, onChangeText, onSubmit, onFilterPress
         style={styles.input}
       />
       <Pressable onPress={onFilterPress} style={styles.filter} hitSlop={8} accessibilityLabel="Filters">
-        <MaterialCommunityIcons name="tune-variant" size={s(20)} color={colors.onPrimary} />
+        <MaterialCommunityIcons name="tune-variant" size={s(24)} color={colors.onPrimary} />
       </Pressable>
     </View>
   );
@@ -55,7 +55,7 @@ const createStyles = (c: ThemeColors) =>
       height: "100%",
       marginLeft: s(8),
       fontFamily: fonts.regular,
-      fontSize: fs(16),
+      fontSize: fs(17),
       color: c.text,
       paddingVertical: 0,
       outlineWidth: 0,

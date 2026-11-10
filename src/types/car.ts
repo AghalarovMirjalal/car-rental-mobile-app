@@ -14,8 +14,6 @@ export interface Brand {
   name: string;
   /** Local asset (`require(...)`). */
   logo: number;
-  /** Some logos (Ferrari) fill the whole tile in the design. */
-  fillTile?: boolean;
 }
 
 export type FeatureIcon = "speed" | "wifi" | "seats" | "sensor" | "bluetooth" | "doors";

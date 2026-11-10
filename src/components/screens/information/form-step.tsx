@@ -24,7 +24,7 @@ export default function FormStep({ title, actionTitle, onAction, children }: For
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-        <AppText size={18} weight="bold" style={styles.title}>
+        <AppText size={20} weight="bold" style={styles.title}>
           {title}
         </AppText>
         {children}
@@ -38,9 +38,9 @@ export default function FormStep({ title, actionTitle, onAction, children }: For
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  content: { paddingHorizontal: s(33), paddingTop: s(30), paddingBottom: s(24), gap: s(31) },
+  content: { paddingHorizontal: s(33), paddingTop: s(30.5), paddingBottom: s(24), gap: s(31) },
   // Title -> first field is 15px in the design; the list gap is 31px.
-  title: { marginBottom: -s(16) },
+  title: { marginBottom: -s(18) },
   footer: { alignItems: "center", paddingTop: s(8) },
   button: { width: s(302) },
 });

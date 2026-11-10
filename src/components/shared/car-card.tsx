@@ -21,7 +21,8 @@ interface CarCardProps {
 function CarCard({ car, height = 200 }: CarCardProps) {
   const { colors } = useTheme();
   const styles = useThemedStyles(createStyles);
-  const imageHeight = height >= 220 ? 130 : 140;
+  // Photo box measured in Figma: Home "Hot deals" card (234px) vs. brand catalog card (200px).
+  const photo = height >= 220 ? { top: 67, height: 125 } : { top: 28, height: 143 };
 
   const openDetails = () =>
     // Dynamic route `/car/[id]` — the id is passed as a route param, the rest is looked up by it.
@@ -34,10 +35,10 @@ function CarCard({ car, height = 200 }: CarCardProps) {
     >
       <View style={styles.top}>
         <View>
-          <AppText size={12} weight="semiBold" color={colors.textMuted} uppercase>
+          <AppText size={13} weight="semiBold" color={colors.textMuted} uppercase>
             {car.brandName}
           </AppText>
-          <AppText size={14} weight="bold">
+          <AppText size={16} weight="bold" style={{ marginTop: s(height >= 220 ? 8 : 2) }}>
             {car.model}
           </AppText>
         </View>
@@ -48,7 +49,7 @@ function CarCard({ car, height = 200 }: CarCardProps) {
       <Image
         source={car.image}
         contentFit="contain"
-        style={[styles.image, { height: s(imageHeight) }]}
+        style={[styles.image, { top: s(photo.top), height: s(photo.height) }]}
         transition={150}
       />
     </Pressable>
@@ -65,16 +66,17 @@ const createStyles = (c: ThemeColors) =>
       backgroundColor: c.surface,
       paddingTop: s(22),
       paddingHorizontal: s(13),
-      paddingBottom: s(22),
-      justifyContent: "space-between",
     },
     top: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "flex-start",
     },
+    // Absolutely positioned like in the design — the photo sits under the title row.
     image: {
+      position: "absolute",
       width: s(250),
-      alignSelf: "center",
+      left: "50%",
+      marginLeft: -s(125),
     },
   });

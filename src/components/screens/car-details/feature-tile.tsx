@@ -26,11 +26,11 @@ export default function FeatureTile({ feature, width }: FeatureTileProps) {
 
   return (
     <View style={[styles.tile, { width, backgroundColor: colors.panelTile }]}>
-      <View style={styles.icon}>{ICONS[feature.icon](colors.onHeader, s(22))}</View>
-      <AppText size={11} weight="medium" color={colors.panelLabel} uppercase style={styles.label}>
+      <View style={styles.icon}>{ICONS[feature.icon](colors.onHeader, s(26))}</View>
+      <AppText size={12} weight="medium" color={colors.panelLabel} uppercase style={styles.label}>
         {feature.label}
       </AppText>
-      <AppText size={12} weight="semiBold" color={colors.onHeader}>
+      <AppText size={13} weight="semiBold" color={colors.onHeader} style={styles.value}>
         {feature.value}
       </AppText>
     </View>
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: s(19),
   },
-  icon: { height: s(24), justifyContent: "center" },
-  label: { marginTop: s(20) },
+  icon: { height: s(26), justifyContent: "center" },
+  label: { marginTop: s(16) },
+  value: { marginTop: s(4) },
 });

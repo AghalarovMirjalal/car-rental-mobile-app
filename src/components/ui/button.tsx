@@ -19,7 +19,9 @@ interface ButtonProps {
   /** Corner radius in design px — defaults to a full pill. */
   radius?: number;
   fontSize?: number;
-  fontWeight?: "medium" | "semiBold" | "bold";
+  fontWeight?: "regular" | "medium" | "semiBold" | "bold";
+  /** "left": label starts right after the icon (Facebook button on the auth screen). */
+  align?: "center" | "left";
   textColor?: string;
   icon?: ReactNode;
   style?: StyleProp<ViewStyle>;
@@ -37,6 +39,7 @@ export default function Button({
   fontWeight = "semiBold",
   textColor,
   icon,
+  align = "center",
   style,
 }: ButtonProps) {
   const { colors } = useTheme();
@@ -52,6 +55,8 @@ export default function Button({
         {
           height: s(height),
           borderRadius: radius === undefined ? s(height) / 2 : s(radius),
+          justifyContent: align === "left" ? "flex-start" : "center",
+          paddingLeft: align === "left" ? s(59) : 0,
           backgroundColor: background,
           opacity: pressed ? 0.85 : 1,
         },

@@ -22,18 +22,18 @@ function HistoryItem({ item }: { item: HistoryItemType }) {
         {brand ? <Image source={brand.logo} contentFit="contain" style={styles.logo} /> : null}
       </View>
       <View style={styles.info}>
-        <AppText size={16} weight="bold" numberOfLines={1}>
+        <AppText size={18.5} weight="bold" numberOfLines={1}>
           {item.title}
         </AppText>
-        <AppText size={13} weight="semiBold" color={colors.textSecondary}>
+        <AppText size={15} weight="semiBold" color={colors.textSecondary}>
           {item.date}
         </AppText>
       </View>
       <View style={styles.right}>
-        <AppText size={16} weight="bold">
+        <AppText size={18.5} weight="bold">
           {formatPrice(item.price)}
         </AppText>
-        <AppText size={12} weight="semiBold" color={colors.textSecondary}>
+        <AppText size={15} weight="semiBold" color={colors.textSecondary}>
           {formatDays(item.days)}
         </AppText>
       </View>
@@ -67,6 +67,6 @@ const createStyles = (c: ThemeColors) =>
       justifyContent: "center",
     },
     logo: { width: s(36), height: s(36) },
-    info: { flex: 1, marginLeft: s(18), gap: s(2) },
-    right: { alignItems: "flex-end", gap: s(2) },
+    info: { flex: 1, marginLeft: s(18), gap: s(3) },
+    right: { alignItems: "flex-end", gap: s(3) },
   });

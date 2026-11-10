@@ -6,6 +6,7 @@ export interface PaymentMethod {
   logo: number;
   /** Logo box size inside the option row, in design pixels. */
   logoSize: { width: number; height: number };
+  logoFit?: "contain" | "fill";
 }
 
 export interface CardDetails {

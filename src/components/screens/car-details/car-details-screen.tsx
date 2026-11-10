@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
-import { ScrollView, StyleSheet, useWindowDimensions, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import AppText from "@/components/ui/app-text";
@@ -14,7 +14,7 @@ import ScreenContainer from "@/layout/screen-container";
 import { getCarById } from "@/mock";
 import { useBookingStore } from "@/store/booking-store";
 import { formatPrice } from "@/utils/format";
-import { s } from "@/utils/scale";
+import { s, SCREEN_WIDTH } from "@/utils/scale";
 
 import FeatureTile from "./feature-tile";
 
@@ -29,7 +29,6 @@ export default function CarDetailsScreen() {
   const { colors } = useTheme();
   const styles = useThemedStyles(createStyles);
   const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
   const startBooking = useBookingStore((state) => state.startBooking);
 
   if (!car) {
@@ -45,7 +44,8 @@ export default function CarDetailsScreen() {
     );
   }
 
-  const tileWidth = (Math.min(width, 520) - s(GRID_INSET) * 2 - s(GRID_GAP) * 2) / 3;
+  // Floor it: fractional widths + gaps can overflow the row by a sub-pixel on Android and wrap to 2 columns.
+  const tileWidth = Math.floor((Math.min(SCREEN_WIDTH, 520) - s(GRID_INSET) * 2 - s(GRID_GAP) * 2) / 3);
 
   const book = () => {
     startBooking(car.id);
@@ -53,14 +53,14 @@ export default function CarDetailsScreen() {
   };
 
   return (
-    <ScreenContainer>
+    <ScreenContainer indicator="light">
       <ScrollView bounces={false} showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
         <ScreenHeader height={48} />
         <Image source={car.image} contentFit="contain" style={styles.image} transition={200} />
 
         <View style={[styles.panel, { paddingBottom: insets.bottom + s(27) }]}>
           <View style={styles.titleRow}>
-            <AppText size={20} weight="bold" color={colors.onHeader}>
+            <AppText size={22} weight="bold" color={colors.onHeader}>
               {car.brandName} {car.model}
             </AppText>
             <View style={styles.rating}>
@@ -70,7 +70,7 @@ export default function CarDetailsScreen() {
               </AppText>
             </View>
           </View>
-          <AppText size={16} weight="semiBold" color={colors.panelSubtitle} style={styles.perDay}>
+          <AppText size={17} weight="semiBold" color={colors.panelSubtitle} style={styles.perDay}>
             {formatPrice(car.pricePerDay)} per day
           </AppText>
 
@@ -84,7 +84,7 @@ export default function CarDetailsScreen() {
           </View>
 
           <View style={styles.footer}>
-            <AppText size={22} weight="bold" color={colors.onHeader}>
+            <AppText size={23} weight="bold" color={colors.onHeader}>
               {formatPrice(car.pricePerDay)}
             </AppText>
             <Button
@@ -92,7 +92,7 @@ export default function CarDetailsScreen() {
               onPress={book}
               height={49}
               radius={9}
-              fontSize={16}
+              fontSize={17}
               fontWeight="semiBold"
               textColor={colors.onPrimary}
               style={styles.book}
@@ -107,10 +107,10 @@ export default function CarDetailsScreen() {
 const createStyles = (c: ThemeColors) =>
   StyleSheet.create({
     scroll: { flexGrow: 1 },
-    image: { width: s(352), height: s(200), marginTop: s(52), marginLeft: s(30) },
+    image: { width: s(352), height: s(207), marginTop: s(52), marginLeft: s(30) },
     panel: {
       flexGrow: 1,
-      marginTop: s(37),
+      marginTop: s(30),
       backgroundColor: c.panel,
       borderTopLeftRadius: s(59),
       borderTopRightRadius: s(59),
@@ -124,7 +124,7 @@ const createStyles = (c: ThemeColors) =>
     },
     rating: { flexDirection: "row", alignItems: "center" },
     ratingText: { marginLeft: s(6) },
-    perDay: { paddingHorizontal: s(22), marginTop: s(5) },
+    perDay: { paddingHorizontal: s(22), marginTop: s(1) },
     featuresTitle: { paddingHorizontal: s(22), marginTop: s(35) },
     grid: {
       flexDirection: "row",

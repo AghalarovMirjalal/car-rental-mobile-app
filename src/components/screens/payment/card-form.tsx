@@ -11,10 +11,12 @@ import { s } from "@/utils/scale";
 interface CardFormProps {
   value: CardDetails;
   onChange: (value: CardDetails) => void;
+  /** Highlight missing / invalid fields after "Pay now" was pressed. */
+  showErrors?: boolean;
 }
 
 /** Card number / holder / expiry + CVV fields shown inside the selected payment option. */
-export default function CardForm({ value, onChange }: CardFormProps) {
+export default function CardForm({ value, onChange, showErrors }: CardFormProps) {
   const { colors } = useTheme();
   const set = (patch: Partial<CardDetails>) => onChange({ ...value, ...patch });
 
@@ -26,6 +28,7 @@ export default function CardForm({ value, onChange }: CardFormProps) {
         keyboardType="number-pad"
         value={value.cardNumber}
         onChangeText={(text) => set({ cardNumber: formatCardNumber(text) })}
+        error={showErrors && value.cardNumber.replace(/\s/g, "").length < 12}
       />
       <TextField
         variant="field"
@@ -33,6 +36,7 @@ export default function CardForm({ value, onChange }: CardFormProps) {
         autoCapitalize="words"
         value={value.holderName}
         onChangeText={(holderName) => set({ holderName })}
+        error={showErrors && value.holderName.trim().length < 2}
       />
       <View style={styles.row}>
         <TextField
@@ -41,6 +45,7 @@ export default function CardForm({ value, onChange }: CardFormProps) {
           keyboardType="number-pad"
           value={value.expiry}
           onChangeText={(text) => set({ expiry: formatExpiry(text) })}
+          error={showErrors && value.expiry.length < 5}
           containerStyle={styles.expiry}
         />
         <TextField
@@ -51,6 +56,7 @@ export default function CardForm({ value, onChange }: CardFormProps) {
           maxLength={4}
           value={value.cvv}
           onChangeText={(text) => set({ cvv: text.replace(/\D/g, "") })}
+          error={showErrors && value.cvv.length < 3}
           containerStyle={styles.cvv}
         />
       </View>
@@ -60,7 +66,7 @@ export default function CardForm({ value, onChange }: CardFormProps) {
           size={s(21)}
           color={value.saveCard ? colors.success : colors.radio}
         />
-        <AppText size={13} weight="light" color={colors.textSecondary} style={styles.saveText}>
+        <AppText size={14} weight="light" color={colors.textSecondary} style={styles.saveText}>
           Save Card Information
         </AppText>
       </Pressable>
@@ -69,10 +75,10 @@ export default function CardForm({ value, onChange }: CardFormProps) {
 }
 
 const styles = StyleSheet.create({
-  form: { paddingHorizontal: s(17), gap: s(10) },
+  form: { paddingLeft: s(15), paddingRight: s(25), gap: s(10) },
   row: { flexDirection: "row" },
   expiry: { width: "58%", borderTopRightRadius: 0, borderBottomRightRadius: 0 },
   cvv: { flex: 1, marginLeft: -1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
-  save: { flexDirection: "row", alignItems: "center", marginTop: s(2) },
+  save: { flexDirection: "row", alignItems: "center", marginTop: s(4) },
   saveText: { marginLeft: s(8) },
 });

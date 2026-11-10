@@ -17,17 +17,19 @@ interface ScreenHeaderProps {
   right?: ReactNode;
   /** Row height in design px (title / chevron are vertically centered). */
   height?: number;
+  /** Title font size in design px (20 on the black headers, as in Figma). */
+  titleSize?: number;
 }
 
 /** Back chevron + centered title. Default 78px tall (title centered 39px below the status bar). */
-export default function ScreenHeader({ title, onBack, hideBack, tint, right, height = 78 }: ScreenHeaderProps) {
+export default function ScreenHeader({ title, onBack, hideBack, tint, right, height = 78, titleSize = 20 }: ScreenHeaderProps) {
   const { colors } = useTheme();
   const color = tint ?? colors.text;
 
   const handleBack = () => {
     if (onBack) return onBack();
     if (router.canGoBack()) router.back();
-    else router.replace("/(main)/(tabs)");
+    else router.replace("/(main)/(tabs)/(home)");
   };
 
   return (
@@ -40,7 +42,7 @@ export default function ScreenHeader({ title, onBack, hideBack, tint, right, hei
         )}
       </View>
       {title ? (
-        <AppText size={18} weight="bold" color={color} align="center" numberOfLines={1} style={styles.title}>
+        <AppText size={titleSize} weight="bold" color={color} align="center" numberOfLines={1} style={styles.title}>
           {title}
         </AppText>
       ) : (

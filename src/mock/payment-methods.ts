@@ -23,6 +23,8 @@ export const paymentMethods: PaymentMethod[] = [
     id: "amex",
     name: "American Express",
     logo: require("@assets/images/payments/amex.png"),
-    logoSize: { width: 41, height: 41 },
+    // Stretched to a 59×43 rectangle in the Figma frame.
+    logoSize: { width: 59, height: 43 },
+    logoFit: "fill",
   },
 ];

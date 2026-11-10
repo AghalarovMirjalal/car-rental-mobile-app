@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { PropsWithChildren } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
 import RadioDot from "@/components/ui/radio-dot";
 import type { ThemeColors } from "@/constants/colors";
@@ -12,19 +12,20 @@ interface PaymentOptionProps extends PropsWithChildren {
   method: PaymentMethod;
   selected: boolean;
   onPress: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 /** Bordered row with the payment logo and a radio dot. Expanded content (card form) goes in children. */
-export default function PaymentOption({ method, selected, onPress, children }: PaymentOptionProps) {
+export default function PaymentOption({ method, selected, onPress, style, children }: PaymentOptionProps) {
   const styles = useThemedStyles(createStyles);
 
   return (
-    <View style={[styles.box, selected && styles.expanded]}>
+    <View style={[styles.box, selected && styles.expanded, style]}>
       <Pressable onPress={onPress} style={styles.row} accessibilityRole="radio" accessibilityState={{ checked: selected }}>
         <View style={styles.logoBox}>
           <Image
             source={method.logo}
-            contentFit="contain"
+            contentFit={method.logoFit ?? "contain"}
             style={{ width: s(method.logoSize.width), height: s(method.logoSize.height) }}
           />
         </View>

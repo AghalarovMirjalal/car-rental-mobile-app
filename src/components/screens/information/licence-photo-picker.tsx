@@ -30,7 +30,7 @@ export default function LicencePhotoPicker({ uri, onChange, error }: LicencePhot
 
   return (
     <View style={styles.wrap}>
-      <AppText size={16} weight="bold" align="center">
+      <AppText size={20} weight="bold" align="center">
         Upload Your Licence Phone
       </AppText>
 
@@ -49,7 +49,7 @@ export default function LicencePhotoPicker({ uri, onChange, error }: LicencePhot
         ) : uri ? (
           <Image source={{ uri }} contentFit="cover" style={styles.photo} transition={150} />
         ) : (
-          <Feather name="camera" size={s(56)} color={colors.photoIcon} />
+          <Feather name="camera" size={s(86)} color={colors.photoIcon} />
         )}
       </Pressable>
 
@@ -87,7 +87,7 @@ export default function LicencePhotoPicker({ uri, onChange, error }: LicencePhot
 
 const styles = StyleSheet.create({
   // 91px from the last field (FormStep already adds a 31px gap), 86px from title to the box.
-  wrap: { alignItems: "center", marginTop: s(60) },
+  wrap: { alignItems: "center", marginTop: s(58) },
   box: {
     width: s(200),
     height: s(150),
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
-    marginTop: s(86),
+    marginTop: s(83),
     marginBottom: s(12),
   },
   photo: { width: "100%", height: "100%" },
