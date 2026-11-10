@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router/js-tabs";
 
+import SideMenu from "@/components/screens/home/side-menu";
 import { useTheme } from "@/hooks/use-theme";
 import TabBar from "@/layout/tab-bar";
 
@@ -8,14 +9,18 @@ export default function TabsLayout() {
   const { colors } = useTheme();
 
   return (
-    <Tabs
-      tabBar={(props) => <TabBar {...props} />}
-      screenOptions={{ headerShown: false, sceneStyle: { backgroundColor: colors.background } }}
-    >
-      <Tabs.Screen name="(home)" options={{ title: "Home" }} />
-      <Tabs.Screen name="history" options={{ title: "Recent History" }} />
-      <Tabs.Screen name="location" options={{ title: "Location" }} />
-      <Tabs.Screen name="settings" options={{ title: "Settings" }} />
-    </Tabs>
+    <>
+      <Tabs
+        tabBar={(props) => <TabBar {...props} />}
+        screenOptions={{ headerShown: false, sceneStyle: { backgroundColor: colors.background } }}
+      >
+        <Tabs.Screen name="(home)" options={{ title: "Home" }} />
+        <Tabs.Screen name="history" options={{ title: "Recent History" }} />
+        <Tabs.Screen name="location" options={{ title: "Location" }} />
+        <Tabs.Screen name="settings" options={{ title: "Settings" }} />
+      </Tabs>
+      {/* Burger menu drawer opened from Home, drawn above the tab bar. */}
+      <SideMenu />
+    </>
   );
 }
